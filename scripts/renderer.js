@@ -21,7 +21,7 @@ class Renderer {
     }
     if (y > this.rows) {
       y -= this.rows;
-    } else if (j < 0) {
+    } else if (y < 0) {
       y += this.rows;
     }
     let pixelLoc = y * this.cols + x;

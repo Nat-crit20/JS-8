@@ -1,5 +1,5 @@
-import Renderer from "./renderer";
-
+import Renderer from "./renderer.js";
+console.log("Chip8 file");
 const renderer = new Renderer(10);
 let loop;
 let fps = 60,
@@ -13,7 +13,7 @@ function init() {
   fpsInterval = 1000 / fps;
   then = Date.now();
   startTime = then;
-
+  console.log("Init");
   //Testing code
   renderer.testRender();
   renderer.render();
@@ -31,4 +31,5 @@ function step() {
   }
   loop = requestAnimationFrame(step);
 }
+
 init();
