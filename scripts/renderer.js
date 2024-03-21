@@ -12,5 +12,18 @@ class Renderer {
     this.canvas.height = this.rows * scale;
     this.display = new Array(this.cols * this.rows);
   }
+
+  setPixel(x, y) {
+    if (x > this.cols) {
+      x -= this.cols;
+    } else if (x < 0) {
+      x += this.cols;
+    }
+    if (y > this.rows) {
+      y -= this.rows;
+    } else if (j < 0) {
+      y += this.rows;
+    }
+  }
 }
 export default Renderer;
