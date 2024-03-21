@@ -27,6 +27,7 @@ class Keyboard {
   isKeyPressed(keyCode) {
     return this.keysPressed[keyCode];
   }
+
   onKeyDown(event) {
     let key = this.KEYMAP[event.which];
     this.keysPressed[key] = true;
@@ -35,6 +36,11 @@ class Keyboard {
       this.onNextKeyPress(parseInt(key));
       this.onNextKeyPress = null;
     }
+  }
+
+  onKeyUp(event) {
+    let key = this.KEYMAP[event.which];
+    this.keysPressed[key] = false;
   }
 }
 
