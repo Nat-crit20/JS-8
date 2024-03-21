@@ -18,11 +18,14 @@ class Keyboard {
       67: 0xb, // C
       86: 0xf, // V
     };
-    this.keyPressed = [];
+    this.keysPressed = [];
 
     this.onNextKeyPress = null;
     window.addEventListener("keydown", this.onKeyDown.bind(this), false);
     window.addEventListener("keyup", this.onKeyUp.bind(this), false);
+  }
+  isKeyPressed(keyCode) {
+    return this.keysPressed[keyCode];
   }
 }
 
