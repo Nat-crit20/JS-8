@@ -32,5 +32,19 @@ class Renderer {
   clear() {
     this.display = new Array(this.cols * this.rows);
   }
+
+  render() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    for (let i = 0; i < this.cols * this.rows; i++) {
+      let x = (i % this.cols) * this.scale;
+      let y = Math.floor(i / this.cols) * this.scale;
+      if (this.display[i]) {
+        //Set the pixel color to black
+        this.ctx.fill = "#000";
+        this.ctx.fillRect(x, y, this.scale, this.scale);
+      }
+    }
+  }
 }
 export default Renderer;
