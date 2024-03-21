@@ -1,6 +1,8 @@
 import Renderer from "./renderer.js";
-console.log("Chip8 file");
+import Keyboard from "./keyboard.js";
+
 const renderer = new Renderer(10);
+const keyboard = new Keyboard();
 let loop;
 let fps = 60,
   fpsInterval,
