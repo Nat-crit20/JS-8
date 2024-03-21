@@ -27,6 +27,15 @@ class Keyboard {
   isKeyPressed(keyCode) {
     return this.keysPressed[keyCode];
   }
+  onKeyDown(event) {
+    let key = this.KEYMAP[event.which];
+    this.keysPressed[key] = true;
+
+    if (this.onNextKeyPress !== null && key) {
+      this.onNextKeyPress(parseInt(key));
+      this.onNextKeyPress = null;
+    }
+  }
 }
 
 export default Keyboard;
