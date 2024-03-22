@@ -22,4 +22,12 @@ class Speaker {
       this.oscillator.start();
     }
   }
+
+  stop() {
+    if (this.oscillator) {
+      this.oscillator.stop();
+      this.oscillator.disconnect();
+      this.oscillator = null;
+    }
+  }
 }
