@@ -125,6 +125,20 @@ class CPU {
       this.memory[0x200 + loc] = program[loc];
     }
   }
+
+  loadRom(romName) {
+    let request = new XMLHttpRequest();
+    let self = this;
+    request.onload = function () {
+      if (request.response) {
+        let program = new Uint8Array(request.response);
+        self.loadProgramIntoMemory(program);
+      }
+    };
+    request.open("GET", "roms/" + romName);
+    request.responseType = "arraybuffer";
+    request.send();
+  }
 }
 
 export default CPU;
