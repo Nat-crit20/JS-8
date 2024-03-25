@@ -119,6 +119,12 @@ class CPU {
       this.memory[i] = sprites[i];
     }
   }
+
+  loadProgramIntoMemory(program) {
+    for (let loc = 0; loc < program.length; loc++) {
+      this.memory[0x200 + loc] = program[loc];
+    }
+  }
 }
 
 export default CPU;
