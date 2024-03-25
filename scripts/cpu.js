@@ -180,22 +180,37 @@ class CPU {
       case 0x0000:
         switch (opcode) {
           case 0x00e0:
+            this.renderer.clear();
             break;
           case 0x00ee:
+            this.pc = this.stack.pop();
             break;
         }
         break;
       case 0x1000:
+        this.pc = opcode & 0xfff;
         break;
       case 0x2000:
+        this.stack.push(this.pc);
+        this.pc = opcode & 0xfff;
         break;
       case 0x3000:
+        if (this.v[x] === (opcode & 0xff)) {
+          this.pc += 2;
+        }
         break;
       case 0x4000:
+        if (this.v[x] !== (opcode & 0xff)) {
+          this.pc += 2;
+        }
         break;
       case 0x5000:
+        if (this.v[x] === this.v[y]) {
+          this.pc += 2;
+        }
         break;
       case 0x6000:
+        this.v[x] = opcode & 0xff;
         break;
       case 0x7000:
         break;
