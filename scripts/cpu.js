@@ -140,6 +140,7 @@ class CPU {
     request.send();
   }
 
+  //This function is the brain of the emulator
   cycle() {
     for (let i = 0; i < this.speed; i++) {
       if (!this.pause) {
