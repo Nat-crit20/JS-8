@@ -154,6 +154,23 @@ class CPU {
     this.playSound();
     this.renderer.render();
   }
+
+  updateTimers() {
+    if (this.delayTimer > 0) {
+      this.delayTimer--;
+    }
+    if (this.soundTimer > 0) {
+      this.soundTimer--;
+    }
+  }
+
+  playSound() {
+    if (this.sound > 0) {
+      this.speaker.play(440);
+    } else {
+      this.speaker.stop();
+    }
+  }
 }
 
 export default CPU;
