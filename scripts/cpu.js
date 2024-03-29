@@ -213,35 +213,70 @@ class CPU {
         this.v[x] = opcode & 0xff;
         break;
       case 0x7000:
+        this.v[x] += opcode & 0xff;
         break;
       case 0x8000:
         switch (opcode & 0xf) {
           // 0xF will grab the last bit in the hex 0x1234 & 0xF will return 4
+          case 0x0:
+            this.v[x] = this.v[y];
+            break;
           case 0x1:
+            this.v[x] |= this.v[y];
             break;
           case 0x2:
+            this.v[x] &= this.v[y];
             break;
           case 0x3:
+            this.v[x] ^= this.v[y];
             break;
           case 0x4:
+            let sum = this.v[x] + this.v[y];
+            this.v[0xf] = 0;
+            if (sum > 0xff) {
+              this.v[0xf] = 1;
+            }
+            this.v[x] = sum;
             break;
           case 0x5:
+            let sub = this.v[x] - this.v[y];
+            this.v[0xf] = 0;
+            if (this.v[x] > this.v[y]) {
+              this.v[0xf] = 1;
+            }
+            this.v[x] = sub;
             break;
           case 0x6:
+            this.v[0xf] = this.v[x] & 0x1;
+            this.v[x] >>= 1;
             break;
           case 0x7:
+            this.v[0xf] = 0;
+            if (this.v[y] > this.v[x]) {
+              this.v[0xf] = 1;
+            }
+            this.v[x] = this.v[y] - this.v[x];
             break;
           case 0xe:
+            this.v[0xf] = this.v[x] & 0x80;
+            this.v[x] <<= 1;
             break;
         }
         break;
       case 0x9000:
+        if (this.v[x] !== this.v[y]) {
+          this.pc += 2;
+        }
         break;
       case 0xa000:
+        this.i = opcode & 0xfff;
         break;
       case 0xb000:
+        this.pc = (opcode & 0xfff) + this.v[0];
         break;
       case 0xc000:
+        let rand = Math.floor(Math.random() * 0xfff);
+        this.v[x] = rand & (opcode & 0xff);
         break;
       case 0xd000:
         break;
