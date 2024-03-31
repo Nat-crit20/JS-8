@@ -21,9 +21,8 @@ function init() {
   startTime = then;
   cpu.loadSpritesIntoMemory();
   cpu.loadRom("BLINKY");
-  //End testing code
 
-  loop = requestAnimationFrame(step);
+  window.requestAnimationFrame(step);
 }
 
 function step() {
@@ -33,7 +32,7 @@ function step() {
   if (elapsed > fpsInterval) {
     cpu.cycle();
   }
-  loop = requestAnimationFrame(step);
+  window.requestAnimationFrame(step);
 }
 
 init();
